@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMA ARES ARENA SEASON 2 — UMA FAMILIA TOUR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --bg:#FAF8FE;
+    --surface:#FFFFFF;
+    --surface-tint:#F4EFFD;
+    --line:#E6DEF7;
+    --violet-50:#F3EEFE;
+    --violet-100:#E6D9FB;
+    --violet-300:#C3A6F4;
+    --violet-400:#A87CF0;
+    --violet-500:#8B5CF6;
+    --violet-600:#7C3AED;
+    --violet-700:#6024C4;
+    --violet-900:#3B1768;
+    --ink:#221A35;
+    --ink-soft:#6A5E85;
+    --ink-faint:#A99BC4;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background:
+      radial-gradient(ellipse 70% 45% at 12% 0%, rgba(124,58,237,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 40% at 100% 18%, rgba(168,124,240,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 35% at 50% 100%, rgba(124,58,237,0.05) 0%, transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 24px 48px;
+    text-align:center;
+    position:relative;
+  }
+  .hero-curve{
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:min(900px,100%); height:340px;
+    pointer-events:none; z-index:0;
+  }
+  .hero-inner{ position:relative; z-index:1; }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:600; letter-spacing:4px;
+    color:var(--violet-600); text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .eyebrow::before, .eyebrow::after{ content:'—'; margin:0 10px; color:var(--violet-300); }
+
+  .hero-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(40px,7.5vw,76px);
+    letter-spacing:1px;
+    line-height:1.02;
+    background:linear-gradient(135deg,var(--violet-700) 0%, var(--violet-500) 50%, var(--violet-700) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+
+  .season-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:18px;
+    background:var(--violet-900);
+    color:var(--white);
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:13px; letter-spacing:3px;
+    padding:7px 20px;
+    border-radius:100px;
+    text-transform:uppercase;
+  }
+  .season-tag span{ color:var(--violet-300); }
+
+  .hero-subtitle{
+    margin-top:22px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:clamp(15px,2.4vw,20px);
+    letter-spacing:6px;
+    color:var(--violet-700);
+    text-transform:uppercase;
+  }
+
+  .hero-tagline{
+    margin:18px auto 0;
+    max-width:520px;
+    font-size:15px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+
+  .hero-stats{
+    margin-top:40px;
+    display:flex; justify-content:center; flex-wrap:wrap; gap:14px;
+  }
+  .hero-stat{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 20px;
+    min-width:128px;
+  }
+  .hero-stat-val{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:22px; color:var(--violet-700);
+  }
+  .hero-stat-label{
+    margin-top:2px;
+    font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* quick nav */
+  .quicknav{
+    margin-top:36px;
+    display:flex; gap:8px; justify-content:center; flex-wrap:wrap;
+  }
+  .quicknav a{
+    text-decoration:none;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; font-weight:500; letter-spacing:0.5px;
+    color:var(--violet-700);
+    background:var(--violet-50);
+    border:1px solid var(--violet-100);
+    border-radius:100px;
+    padding:7px 14px;
+    transition:background .2s,color .2s, transform .2s;
+  }
+  .quicknav a:hover{ background:var(--violet-600); color:var(--white); transform:translateY(-1px); }
+
+  /* ---------- SECTION LABEL ---------- */
+  .section{ padding:56px 0; }
+  .section-head{
+    display:flex; align-items:baseline; gap:14px;
+    margin-bottom:28px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px; font-weight:600; color:var(--violet-300);
+  }
+  .section-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:clamp(22px,3.6vw,30px);
+    color:var(--violet-900);
+    letter-spacing:0.2px;
+  }
+  .section-sub{
+    margin-top:6px;
+    font-size:13.5px; color:var(--ink-soft);
+  }
+
+  /* ---------- GENERAL RULES ---------- */
+  .rules-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+  }
+  @media (max-width:760px){ .rules-grid{ grid-template-columns:1fr; } }
+
+  .rule-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px 24px;
+    position:relative;
+    overflow:hidden;
+    transition:border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .rule-card:hover{
+    border-color:var(--violet-300);
+    transform:translateY(-3px);
+    box-shadow:0 16px 32px -16px rgba(124,58,237,0.25);
+  }
+  .rule-card::before{
+    content:''; position:absolute; top:0; left:0; width:100%; height:3px;
+    background:linear-gradient(90deg,var(--violet-400),var(--violet-700));
+  }
+  .rule-index{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:2px; color:var(--violet-400); font-weight:600;
+    margin-bottom:10px;
+  }
+  .rule-name{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px;
+    color:var(--ink); margin-bottom:6px;
+  }
+  .rule-desc{ font-size:13px; color:var(--ink-soft); line-height:1.55; }
+  .rule-desc b{ color:var(--violet-700); font-weight:600; }
+
+  /* ---------- POINT SYSTEM ---------- */
+  .points-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 26px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .points-card::before{
+    content:''; position:absolute; top:0; left:0; width:100%; height:3px;
+    background:linear-gradient(90deg,transparent,var(--violet-500),var(--violet-700),var(--violet-500),transparent);
+  }
+  .points-grid{
+    margin-top:18px;
+    display:grid; grid-template-columns:repeat(5,1fr); gap:0;
+  }
+  @media (max-width:680px){ .points-grid{ grid-template-columns:repeat(3,1fr); } }
+
+  .point-item{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:14px 8px; border-radius:10px;
+    transition:background .2s;
+  }
+  .point-item:hover{ background:var(--violet-50); }
+  .point-pos{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px; font-weight:600; letter-spacing:1.5px; color:var(--ink-faint);
+    text-transform:uppercase;
+  }
+  .point-val{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:27px; line-height:1;
+    color:var(--violet-700);
+  }
+  .point-item.p1 .point-val{ color:var(--violet-900); font-size:30px; }
+  .point-item.p2 .point-val{ color:var(--violet-700); font-size:29px; }
+  .point-item.p3 .point-val{ color:var(--violet-600); }
+  .point-item.p-low .point-val{ color:var(--violet-400); font-size:20px; }
+  .point-item.p-zero .point-val{ color:var(--ink-faint); font-size:17px; }
+  .point-label{ font-size:9.5px; color:var(--ink-faint); letter-spacing:1px; }
+
+  .points-note{
+    margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
+    font-size:12.5px; color:var(--ink-soft); line-height:1.6;
+  }
+  .points-note b{ color:var(--violet-700); }
+
+  /* ---------- RACE ROUTE / TIMELINE ---------- */
+  .route{ position:relative; padding-top:8px; }
+  .route::before{
+    content:'';
+    position:absolute; top:6px; bottom:6px; left:50%;
+    width:2px; transform:translateX(-50%);
+    background:linear-gradient(180deg,var(--violet-200,var(--violet-100)),var(--violet-500),var(--violet-200,var(--violet-100)));
+    opacity:0.6;
+  }
+  @media (max-width:840px){
+    .route::before{ left:21px; }
+  }
+
+  .route-item{
+    display:grid;
+    grid-template-columns:1fr 52px 1fr;
+    align-items:start;
+    gap:0 26px;
+    margin-bottom:40px;
+    position:relative;
+    opacity:0; transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .route-item.is-visible{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:840px){
+    .route-item{ grid-template-columns:44px 1fr; gap:0 16px; }
+  }
+
+  .route-node{
+    grid-column:2; justify-self:center;
+    width:46px; height:46px; border-radius:50%;
+    background:linear-gradient(135deg,var(--violet-500),var(--violet-700));
+    color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;
+    box-shadow:0 0 0 6px var(--bg), 0 6px 18px -6px rgba(124,58,237,0.5);
+    flex-shrink:0;
+  }
+  @media (max-width:840px){
+    .route-node{ grid-column:1; width:38px; height:38px; font-size:13px; }
+  }
+
+  .route-card{
+    grid-column:1;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 24px 24px;
+    transition:border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .route-item:nth-child(even) .route-card{ grid-column:3; }
+  @media (max-width:840px){
+    .route-item:nth-child(even) .route-card{ grid-column:2; }
+    .route-card{ grid-column:2; }
+  }
+  .route-card:hover{
+    border-color:var(--violet-300);
+    box-shadow:0 18px 36px -18px rgba(124,58,237,0.28);
+    transform:translateY(-2px);
+  }
+
+  .stage-kicker{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:8px;
+    margin-bottom:8px;
+  }
+  .stage-type{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px; font-weight:600; letter-spacing:1.5px;
+    color:var(--violet-500); text-transform:uppercase;
+  }
+  .stage-date{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:500; color:var(--ink-faint);
+  }
+  .stage-title{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:21px;
+    color:var(--violet-900); margin-bottom:14px;
+  }
+
+  .track-line{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px;
+    color:var(--ink);
+    background:var(--violet-50);
+    border:1px solid var(--violet-100);
+    border-radius:8px;
+    padding:6px 12px;
+    margin-bottom:14px;
+  }
+  .track-line .dot{ width:6px; height:6px; border-radius:50%; background:var(--violet-500); }
+
+  .meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(96px,1fr));
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .meta-item{ display:flex; flex-direction:column; gap:2px; }
+  .meta-label{
+    font-size:9.5px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--ink-faint); font-weight:600;
+  }
+  .meta-val{ font-size:13px; color:var(--ink); font-weight:500; }
+  .meta-val.accent{ color:var(--violet-700); font-weight:600; }
+
+  .format-list{
+    display:flex; flex-direction:column; gap:8px;
+    padding-top:14px; border-top:1px solid var(--line);
+  }
+  .format-row{ display:flex; align-items:flex-start; gap:10px; }
+  .format-mark{
+    width:5px; height:5px; border-radius:50%;
+    background:var(--violet-500); margin-top:7px; flex-shrink:0;
+  }
+  .format-text{ font-size:13px; color:var(--ink-soft); line-height:1.55; }
+  .format-text b{ color:var(--violet-700); font-weight:600; }
+
+  .outcome-row{
+    margin-top:14px; padding-top:14px; border-top:1px dashed var(--line);
+    display:flex; gap:18px; flex-wrap:wrap;
+  }
+  .outcome-chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; font-weight:500;
+    color:var(--violet-700);
+    display:flex; align-items:center; gap:6px;
+  }
+  .outcome-chip.dim{ color:var(--ink-faint); }
+  .outcome-chip .num{ font-weight:700; }
+
+  /* ---------- FOOTER ---------- */
+  .footer{ text-align:center; padding:56px 24px 64px; }
+  .footer-divider{
+    width:220px; height:1px; margin:0 auto 22px;
+    background:linear-gradient(90deg,transparent,var(--violet-300),transparent);
+  }
+  .footer-title{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
+    letter-spacing:2px; color:var(--violet-900); text-transform:uppercase;
+  }
+  .footer-credits{
+    margin-top:18px; display:flex; justify-content:center; gap:36px; flex-wrap:wrap;
+  }
+  .footer-credits div{ font-size:12px; letter-spacing:0.5px; color:var(--ink-soft); }
+  .footer-credits b{ color:var(--violet-700); font-weight:600; }
+
+  @media (prefers-reduced-motion: reduce){
+    .route-item{ opacity:1 !important; transform:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <svg class="hero-curve" viewBox="0 0 900 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0 260 C 180 60, 360 320, 540 140 S 820 40, 900 120" stroke="#C3A6F4" stroke-width="2" opacity="0.35"/>
+      <path d="M0 200 C 200 360, 380 20, 560 220 S 800 300, 900 160" stroke="#8B5CF6" stroke-width="1.5" opacity="0.2"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="eyebrow">Uma Ares</div>
+      <h1 class="hero-title">UMA ARES ARENA</h1>
+      <div class="season-tag">Season <span>02</span></div>
+      <div class="hero-subtitle">Uma Familia Tour</div>
+      <p class="hero-tagline">Tujuh etape balapan, satu jalur panjang menuju mahkota — dari gerbang Kualifikasi hingga garis akhir Grand Final.</p>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-val">7</div><div class="hero-stat-label">Etape Balapan</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">30</div><div class="hero-stat-label">Peserta Awal</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">3</div><div class="hero-stat-label">Slot Grand Final</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">15</div><div class="hero-stat-label">Hari, 20 Jun–4 Jul</div></div>
+      </div>
+
+      <nav class="quicknav">
+        <a href="#stage-1">Kualifikasi</a>
+        <a href="#stage-2">Playoff</a>
+        <a href="#stage-3">Lower</a>
+        <a href="#stage-4">Upper</a>
+        <a href="#stage-5">Final Lower</a>
+        <a href="#stage-6">Semifinal</a>
+        <a href="#stage-7">Grand Final</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- GENERAL RULES -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Aturan Umum</div>
+        <div class="section-sub">Berlaku untuk seluruh peserta di setiap babak turnamen</div>
+      </div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-index">Rating Cap</div>
+        <div class="rule-name">Maksimal 19.199 (SS)</div>
+        <div class="rule-desc">Uma yang diturunkan tidak boleh memiliki rating di atas <b>19.199 (SS)</b>.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-index">Debuff</div>
+        <div class="rule-name">Aktif (On)</div>
+        <div class="rule-desc">Sistem debuff diaktifkan pada seluruh race sepanjang turnamen berlangsung.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-index">Ketepatan Waktu</div>
+        <div class="rule-name">Wajib Sesuai Batas Waktu</div>
+        <div class="rule-desc">Peserta wajib <b>masuk room</b> sesuai batas waktu yang telah ditentukan panitia.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POINT SYSTEM -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Sistem Poin Race</div>
+        <div class="section-sub">Akumulasi poin berdasarkan placement setiap Uma peserta</div>
+      </div>
+    </div>
+    <div class="points-card">
+      <div class="points-grid">
+        <div class="point-item p1"><div class="point-pos">1st</div><div class="point-val">20</div><div class="point-label">pts</div></div>
+        <div class="point-item p2"><div class="point-pos">2nd</div><div class="point-val">18</div><div class="point-label">pts</div></div>
+        <div class="point-item p3"><div class="point-pos">3rd</div><div class="point-val">16</div><div class="point-label">pts</div></div>
+        <div class="point-item p3"><div class="point-pos">4th</div><div class="point-val">14</div><div class="point-label">pts</div></div>
+        <div class="point-item p3"><div class="point-pos">5th</div><div class="point-val">12</div><div class="point-label">pts</div></div>
+        <div class="point-item p-low"><div class="point-pos">6th</div><div class="point-val">10</div><div class="point-label">pts</div></div>
+        <div class="point-item p-low"><div class="point-pos">7th</div><div class="point-val">6</div><div class="point-label">pts</div></div>
+        <div class="point-item p-low"><div class="point-pos">8th</div><div class="point-val">4</div><div class="point-label">pts</div></div>
+        <div class="point-item p-low"><div class="point-pos">9th</div><div class="point-val">2</div><div class="point-label">pts</div></div>
+        <div class="point-item p-zero"><div class="point-pos">10th – 12th</div><div class="point-val">0</div><div class="point-label">pts</div></div>
+      </div>
+      <div class="points-note">Tabel poin ini berlaku untuk <b>semua babak</b> yang menggunakan sistem poin — Playoff, Upper Bracket, Final Lower Bracket, Semifinal, dan Grand Final. Poin dihitung sesuai jumlah Uma yang benar-benar turun di race tersebut: bila hanya diisi 9 Uma, poin dihitung sampai posisi ke-9; bila diisi penuh 12 Uma, poin dihitung sampai posisi ke-12.</div>
+    </div>
+  </section>
+
+  <!-- RACE ROUTE -->
+  <section class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Rute Turnamen</div>
+        <div class="section-sub">Tujuh etape, dari Kualifikasi hingga Grand Final</div>
+      </div>
+    </div>
+
+    <div class="route">
+
+      <!-- STAGE 1 — KUALIFIKASI -->
+      <div class="route-item" id="stage-1">
+        <div class="route-node">1</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Group Stage · Single Elimination</span>
+            <span class="stage-date">Sabtu, 20 Jun 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Kualifikasi</div>
+          <div class="track-line"><span class="dot"></span>Hanshin · 2200M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Summer</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Right</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Non-Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Wet, Cloudy</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Great</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>30 peserta</b> dibagi ke dalam <b>6 grup</b>, masing-masing grup berisi <b>5 peserta</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>2 Uma</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Format <b>Single Elimination</b>; placement dihitung dari <b>1 Uma terbaik</b> milik tiap peserta.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>4 peserta teratas</b> tiap grup lolos ke Playoff, <b>1 peserta terbawah</b> tereliminasi.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Lolos ke Playoff <span class="num">24</span></span>
+            <span class="outcome-chip dim">Tereliminasi <span class="num">6</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 2 — PLAYOFF -->
+      <div class="route-item" id="stage-2">
+        <div class="route-node">2</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Group Stage · Sistem Poin (3x Race)</span>
+            <span class="stage-date">Senin, 22 Jun 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Playoff</div>
+          <div class="track-line"><span class="dot"></span>Tokyo · 1600M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Spring</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Left</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Firm, Sunny</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Great</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>24 peserta</b> dibagi ke dalam <b>4 grup</b>, masing-masing grup berisi <b>6 peserta</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>2 Uma</b>, dengan <b>3x race</b> per grup.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Poin dihitung dari <b>total placement kedua Uma</b> di seluruh race.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>3 peserta teratas</b> tiap grup lanjut ke Upper Bracket, <b>3 peserta terbawah</b> turun ke Lower Bracket.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Ke Upper Bracket <span class="num">12</span></span>
+            <span class="outcome-chip">Ke Lower Bracket <span class="num">12</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 3 — LOWER BRACKET -->
+      <div class="route-item" id="stage-3">
+        <div class="route-node">3</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Elimination Bracket</span>
+            <span class="stage-date">Selasa, 23 Jun 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Lower Bracket</div>
+          <div class="track-line"><span class="dot"></span>Hanshin · 3200M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Spring</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Right</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Wet, Rainy</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val">Awful</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>12 peserta</b> dibagi ke dalam <b>2 grup</b>, masing-masing grup berisi <b>6 peserta</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>2 Uma</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Format <b>Single Elimination</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>Top 3</b> tiap grup lolos ke Final Lower Bracket, <b>3 peserta terbawah</b> tiap grup tereliminasi.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Lolos ke Final Lower <span class="num">6</span></span>
+            <span class="outcome-chip dim">Tereliminasi <span class="num">6</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 4 — UPPER BRACKET -->
+      <div class="route-item" id="stage-4">
+        <div class="route-node">4</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Champions Meeting · Sistem Poin (3x Race)</span>
+            <span class="stage-date">Jumat, 26 Jun 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Upper Bracket</div>
+          <div class="track-line"><span class="dot"></span>Nakayama · 2000M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Spring</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Right</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Firm, Sunny</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Normal</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>12 peserta</b> dibagi ke dalam <b>4 grup</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>3 Uma</b>, dengan format <b>Champions Meeting</b> dan <b>3x race</b> per grup.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Poin dihitung dari <b>total placement ketiga Uma</b> di seluruh race.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>Top 2</b> tiap grup lanjut ke Semifinal, sisanya melanjutkan ke Final Lower Bracket.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Lanjut ke Semifinal <span class="num">8</span></span>
+            <span class="outcome-chip">Ke Final Lower Bracket <span class="num">4</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 5 — FINAL LOWER BRACKET -->
+      <div class="route-item" id="stage-5">
+        <div class="route-node">5</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Wildcard Decider · Sistem Poin (3x Race)</span>
+            <span class="stage-date">Senin, 30 Jun 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Final Lower Bracket</div>
+          <div class="track-line"><span class="dot"></span>Oi (Dirt) · 2000M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Fall</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Right</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Wet, Sunny</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Normal</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>10 peserta</b> dalam <b>1 grup</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>1 Uma</b>, dengan <b>3x race</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Memperebutkan <b>1 tiket terakhir</b> ke Semifinal; sisanya tereliminasi.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Lolos ke Semifinal <span class="num">1</span></span>
+            <span class="outcome-chip dim">Tereliminasi <span class="num">9</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 6 — SEMIFINAL -->
+      <div class="route-item" id="stage-6">
+        <div class="route-node">6</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Champions Meeting · Sistem Poin (3x Race)</span>
+            <span class="stage-date">Kamis, 2 Jul 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Semifinal</div>
+          <div class="track-line"><span class="dot"></span>Tokyo · 2400M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Spring</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Left</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Firm, Sunny</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Great</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>9 peserta</b> dibagi ke dalam <b>3 grup</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>3 Uma</b>, dengan format <b>Champions Meeting</b> dan <b>3x race</b> per grup.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Poin dihitung dari <b>total placement ketiga Uma</b> di seluruh race.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Juara tiap grup melaju ke Grand Final.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">Lanjut ke Grand Final <span class="num">3</span></span>
+            <span class="outcome-chip dim">Tereliminasi <span class="num">6</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STAGE 7 — GRAND FINAL -->
+      <div class="route-item" id="stage-7">
+        <div class="route-node">7</div>
+        <div class="route-card">
+          <div class="stage-kicker">
+            <span class="stage-type">Champions Meeting · Sistem Poin (5x Race)</span>
+            <span class="stage-date">Sabtu, 4 Jul 2026 · 19.30 WIB</span>
+          </div>
+          <div class="stage-title">Grand Final</div>
+          <div class="track-line"><span class="dot"></span>Nakayama · 2500M</div>
+          <div class="meta-grid">
+            <div class="meta-item"><span class="meta-label">Musim</span><span class="meta-val">Winter</span></div>
+            <div class="meta-item"><span class="meta-label">Arah</span><span class="meta-val">Right</span></div>
+            <div class="meta-item"><span class="meta-label">Tipe Jarak</span><span class="meta-val">Non-Standard</span></div>
+            <div class="meta-item"><span class="meta-label">Kondisi</span><span class="meta-val">Firm, Sunny</span></div>
+            <div class="meta-item"><span class="meta-label">Mood</span><span class="meta-val accent">Great</span></div>
+          </div>
+          <div class="format-list">
+            <div class="format-row"><span class="format-mark"></span><span class="format-text"><b>3 peserta terbaik</b> turnamen bertemu di babak puncak.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Setiap peserta membawa <b>3 Uma</b>, dengan format <b>Champions Meeting</b> dan <b>5x race</b>.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Poin dihitung dari <b>total placement ketiga Uma</b> di seluruh race.</span></div>
+            <div class="format-row"><span class="format-mark"></span><span class="format-text">Peserta dengan akumulasi poin tertinggi menjadi <b>Juara UMA ARES ARENA Season 2</b>.</span></div>
+          </div>
+          <div class="outcome-row">
+            <span class="outcome-chip">🏆 Juara · Runner-up · Posisi 3</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-divider"></div>
+    <div class="footer-title">UMA ARES ARENA SEASON 2 — UMA FAMILIA TOUR</div>
+    <div class="footer-credits">
+      <div>Disponsori oleh <b>Fajar</b></div>
+      <div>Tim Pengurus — <b>Zen</b> · <b>Yandi</b> · <b>A Seph</b></div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const items = document.querySelectorAll('.route-item');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    }, { threshold: 0.15 });
+    items.forEach(i => obs.observe(i));
+  } else {
+    document.querySelectorAll('.route-item').forEach(i => i.classList.add('is-visible'));
+  }
+</script>
+</body>
+</html>
